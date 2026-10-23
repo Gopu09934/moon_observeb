@@ -62,7 +62,7 @@ VIDEO_FEED_LABEL="${VIDEO_FEED_LABEL:-MOON ANIMATION}"
 CREDIT_TEXT="${CREDIT_TEXT:-Credits: NASA}"
 
 # Small chip in the bottom-right corner (mirrors the LIVE NOW chip).
-RIGHT_CHIP_TEXT="${RIGHT_CHIP_TEXT:-S E P   1 9}"
+RIGHT_CHIP_TEXT="${RIGHT_CHIP_TEXT:-$(date -u +'%b %d' | tr '[:lower:]' '[:upper:]' | sed 's/\(.\)/\1 /g' | sed 's/ $//')}"
 
 # Set MOON_FLIP=true to draw the phase disc as seen from the Southern
 # Hemisphere (lit side mirrored). Default is the Northern view.
@@ -868,6 +868,7 @@ prepare_video_content() {
     CHAIN+="[cm3h]drawtext=fontfile=${FONT}:textfile=${ASSET_DIR}/moon_dist.txt:reload=1:fontcolor=white:fontsize=14:x=${MVALUE_X}:y=${CM3_LINE4_Y}[cm3i];"
     CHAIN+="[cm3i]drawtext=fontfile=${FONT}:text='EVENT':fontcolor=white@0.55:fontsize=13:x=${MTEXT_INSET}:y=${CM3_LINE5_Y}[cm3j];"
     CHAIN+="[cm3j]drawtext=fontfile=${FONT}:text='InOMN · $(date -u +'%b %d, %Y')':fontcolor=${GOLD}:fontsize=14:x=${MVALUE_X}:y=${CM3_LINE5_Y}[cm3final];"
+    
     prev="cm3final"
 
     # ---------------- Row 2, right: live-rendered Moon phase disc ----------------
