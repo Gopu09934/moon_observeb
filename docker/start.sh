@@ -457,7 +457,7 @@ fi
 printf 'O B S E R V E   T H E'               > "$ASSET_DIR/title1.txt"
 printf 'M O O N   N I G H T   2 0 2 6'       > "$ASSET_DIR/title2.txt"
 printf 'M O O N   W A T C H'                 > "$ASSET_DIR/header.txt"
-printf 'LIVE · SEPTEMBER 19'                 > "$ASSET_DIR/eyebrow.txt"
+printf 'LIVE · %s' "$(date -u +'%B %d' | tr '[:lower:]' '[:upper:]')" > "$ASSET_DIR/eyebrow.txt"
 printf 'SUBSCRIBE for more space livestreams' > "$ASSET_DIR/cta.txt"
 printf '%s' "$CREDIT_TEXT"                   > "$ASSET_DIR/credit.txt"
 printf 'DID YOU KNOW'                        > "$ASSET_DIR/fact_label.txt"
@@ -867,7 +867,7 @@ prepare_video_content() {
     CHAIN+="[cm3g]drawtext=fontfile=${FONT}:text='DIST. FROM EARTH':fontcolor=white@0.55:fontsize=13:x=${MTEXT_INSET}:y=${CM3_LINE4_Y}[cm3h];"
     CHAIN+="[cm3h]drawtext=fontfile=${FONT}:textfile=${ASSET_DIR}/moon_dist.txt:reload=1:fontcolor=white:fontsize=14:x=${MVALUE_X}:y=${CM3_LINE4_Y}[cm3i];"
     CHAIN+="[cm3i]drawtext=fontfile=${FONT}:text='EVENT':fontcolor=white@0.55:fontsize=13:x=${MTEXT_INSET}:y=${CM3_LINE5_Y}[cm3j];"
-    CHAIN+="[cm3j]drawtext=fontfile=${FONT}:text='InOMN · Sep 19, 2026':fontcolor=${GOLD}:fontsize=14:x=${MVALUE_X}:y=${CM3_LINE5_Y}[cm3final];"
+    CHAIN+="[cm3j]drawtext=fontfile=${FONT}:text='InOMN · $(date -u +'%b %d, %Y')':fontcolor=${GOLD}:fontsize=14:x=${MVALUE_X}:y=${CM3_LINE5_Y}[cm3final];"
     prev="cm3final"
 
     # ---------------- Row 2, right: live-rendered Moon phase disc ----------------
